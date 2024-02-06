@@ -1,0 +1,9 @@
+Day 3
+
+ Created folder
+ Tip - npm init -y (for direct creation of package.json)
+
+
+ Semantic versioning (semVer)
+
+ major.minor.patch (4.18.2)
