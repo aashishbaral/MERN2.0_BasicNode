@@ -38,7 +38,8 @@ app.post("/book", upload.single("image"), async (req, res) => {
     fileName =
       "https://cdn.vectorstock.com/i/preview-1x/77/30/default-avatar-profile-icon-grey-photo-placeholder-vector-17317730.jpg";
   } else {
-    fileName = "http://localhost:3000/" + req.file.filename;
+    fileName =
+      "https://mern2-0-basicnode-8atg.onrender.com/" + req.file.filename;
   }
   const {
     bookName,
@@ -94,7 +95,8 @@ app.patch("/book/:id", upload.single("image"), async (req, res) => {
   let fileName;
   if (req.file) {
     const oldImagePath = oldDatas.imageUrl;
-    const localHostUrlLength = "http://localhost:3000/".length;
+    const localHostUrlLength = "https://mern2-0-basicnode-8atg.onrender.com/"
+      .length;
     const newOldImagePath = oldImagePath.slice(localHostUrlLength);
 
     fs.unlink(`storage/${newOldImagePath}`, (err) => {
@@ -104,7 +106,8 @@ app.patch("/book/:id", upload.single("image"), async (req, res) => {
         console.log("File Deleted Successfully");
       }
     });
-    fileName = "http://localhost:3000/" + req.file.filename;
+    fileName =
+      "https://mern2-0-basicnode-8atg.onrender.com/" + req.file.filename;
   }
   await Book.findByIdAndUpdate(id, {
     bookName: bookName,
@@ -126,7 +129,8 @@ app.delete("/book/:id", async (req, res) => {
   const id = req.params.id;
   const book = await Book.findById(id);
   const oldImagePath = book.imageUrl;
-  const localHostUrlLength = "http://localhost:3000/".length;
+  const localHostUrlLength = "https://mern2-0-basicnode-8atg.onrender.com/"
+    .length;
   const newOldImagePath = oldImagePath.slice(localHostUrlLength);
   fs.unlink(`storage/${newOldImagePath}`, (err) => {
     if (err) {
