@@ -124,6 +124,17 @@ app.patch("/book/:id", upload.single("image"), async (req, res) => {
 
 app.delete("/book/:id", async (req, res) => {
   const id = req.params.id;
+  const book = await Book.findById(id);
+  const oldImagePath = book.imageUrl;
+  const localHostUrlLength = "http://localhost:3000/".length;
+  const newOldImagePath = oldImagePath.slice(localHostUrlLength);
+  fs.unlink(`storage/${newOldImagePath}`, (err) => {
+    if (err) {
+      console.log(err);
+    } else {
+      console.log("File Deleted Successfully");
+    }
+  });
   await Book.findByIdAndDelete(id, {});
   res.status(200).json({ message: "Book Deleted Successfully" });
 });

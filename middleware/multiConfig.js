@@ -7,10 +7,6 @@ const storage = multer.diskStorage({
       cb(new Error("This filetype is not supported")); // cb(error)
       return;
     }
-    // if (file.size > 1000000) {
-    //   cb(new Error("File size exceeds the limit of 1MB"));
-    //   return;
-    // }
     cb(null, "./storage"); // --> cb(error,success)
   },
   filename: function (req, file, cb) {
@@ -19,7 +15,6 @@ const storage = multer.diskStorage({
 });
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 1000000 }, // 1MB in bytes
 });
 
 module.exports = {
